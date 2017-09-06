@@ -65,22 +65,25 @@ function loadQsandAs(){
   }
   correct = triviaGame[index].correct;
   var question = triviaGame[index].question;
+  console.log(question)
   $('.question').html(question);
   for(var i = 0; i < 4; i++){
-    var answer = triviaGame[index].answer[i];
+    var answer = triviaGame[index].answers[i];
+    console.log(answer)
     $('.answer').append("<h4 class = allAnswers id=" + i + ">" + answer + "</h4>");
-  };
+  }
   $("h4").on('click', function(){
     var id = $(this).attr('id');
-    alert(id)
+    console.log(id)
+    //alert(id)
     if(id === correct){
-      answered  =true;//stops timer
-      $('.question').text("CORRECT!! THE CORRECT ANSWER WAS: " + triviaGame[index].answer[correct]);
+      answered = true;//stops timer
+      $('.question').text("CORRECT!! THE CORRECT ANSWER WAS: " + triviaGame[index].answers[correct]);
       correctAnswer();
     }
     else{
       answered = true;//stops timer
-      $('.question').text("YOU CHOSE " + triviaGame[index].answer[index] + "WHICH IS INCORRECT. THE CORRECT ANSWER WAS: " + triviaGame[index].answer[correct]);
+      $('.question').text("YOU CHOSE " + triviaGame[index].answers[index] + "WHICH IS INCORRECT. THE CORRECT ANSWER WAS: " + triviaGame[index].answers[correct]);
       incorrectAnswer();
     }
   });
@@ -98,7 +101,7 @@ function timer(){
   }
   else{
     timeRemaining--;
-    $('.timeRemaining').text("YOU HAVE " + timeRemaining + "SECONDS TO CHOOSE!!").removeClass('animate pulse infinite');
+    $('.timeRemaining').text("YOU HAVE " + timeRemaining + " SECONDS TO CHOOSE!!").removeClass('animate pulse infinite');
   }
 };
 
@@ -110,7 +113,7 @@ function correctAnswer(){
 
 function incorrectAnswer(){
   incorrectAnswers++;
-  $('.timeRemaining').text("YOU ANSWERED INCORRECTLY!").css("color : red").addClass('animate pulse infinite');
+  $('.timeRemaining').text("YOU ANSWERED INCORRECTLY!").css("color : red");
   resetRound();
 };
 
