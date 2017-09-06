@@ -30,16 +30,16 @@ var index = 0;
 var answered = false;
 var correct;
 var triviaGame = [
-  {question:"WHO WAS AWARDED THE FIRST U.S. PATENT FOR THE TELEPHONE?",answers:["ALEXANDER GRAHAM BELL","NICOLA TESLA","ELON MUSK","ALBERT EINSTIEN"], correct:0, image:()},
-  {question:"AN ANIMAL THAT LIVES PART OF ITS LIFE ON LAND AND PART ON WATER?",answers:["A DUCK","A MAMMAL","AN AMPHIBIAN","A CRUSTACEAN"], correct:2, image:()},
-  {question:"WHEN WAS THE NINTENDO 64 RELEASED?",answers:["1996","1998","1964","1994"], correct:0, image:()},
-  {question:"HOW OLD MUST A PERSON BE TO RUN FOR U.S. PRESIDENT?",answers:["31","35","37","40"], correct:1, image:()},
-  {question:"WHAT POPULAR SODA BEVERAGE WAS ORIGINALLY DEVELOPED AS A MIXER FOR WHISKY?",answers:["COKE","PEPSI","SURGE","MT DEW"], correct:3, image:()},
-  {question:"WHAT DOES CSS STAND FOR?",answers:["CRYPTIC STYLE STANDARDS","CASCADING STYLE STANDARDS","CASCADING STYLE SHEET","COMPUTER STUFFITY STUFF"], correct:2, image:()},
-  {question:"IN PHOTO EDITING PROGRAMS, WHAT DOES RGB STAND FOR?",answers:["RED GREEN BLUE","REALLY GREAT BALANCE","RED GREAN BLUE","RED GREEN BLEW"], correct:0, image:()},
-  {question:"HTML AND CSS ARE COMPUTER LANGUAGES USED TO CREATE WHAT?",answers:["APPS","GAMES","MUSIC","WEBSITES"], correct:3, image:()},
-  {question:"THE FIRST PERSON SHOOTER VIDEO GAME \"DOOM\" WAS FIRST RELEASED IN WHAT YEAR?",answers:["1999","1989","1993","1997"], correct:2, image:()},
-  {question:"WHAT DOES THE ACRONYM \"LOL\" STAND FOR WHEN USED ON THE INTERWEBS OR ON YOUR PHONE?",answers:["LOVE OR LUST","LAUGH OUT LOUD","LEAGUE OF LEGENDS","LABOR OF LOVE"], correct:1, image:()}
+  {question:"WHO WAS AWARDED THE FIRST U.S. PATENT FOR THE TELEPHONE?",answers:["ALEXANDER GRAHAM BELL","NICOLA TESLA","ELON MUSK","ALBERT EINSTIEN"], correct:0, image:("images/telephone.jpg")},
+  {question:"AN ANIMAL THAT LIVES PART OF ITS LIFE ON LAND AND PART ON WATER?",answers:["A DUCK","A MAMMAL","AN AMPHIBIAN","A CRUSTACEAN"], correct:2, image:("images/amphibian.jpg")},
+  {question:"WHEN WAS THE NINTENDO 64 RELEASED?",answers:["1996","1998","1964","1994"], correct:0, image:("images/N64.jpg")},
+  {question:"HOW OLD MUST A PERSON BE TO RUN FOR U.S. PRESIDENT?",answers:["31","35","37","40"], correct:1, image:("images/president.jpg")},
+  {question:"WHAT POPULAR SODA BEVERAGE WAS ORIGINALLY DEVELOPED AS A MIXER FOR WHISKY?",answers:["COKE","PEPSI","SURGE","MT DEW"], correct:3, image:("images/mtdew.jpg")},
+  {question:"WHAT DOES CSS STAND FOR?",answers:["CRYPTIC STYLE STANDARDS","CASCADING STYLE STANDARDS","CASCADING STYLE SHEET","COMPUTER STUFFITY STUFF"], correct:2, image:("images/css.jpg")},
+  {question:"IN PHOTO EDITING PROGRAMS, WHAT DOES RGB STAND FOR?",answers:["RED GREEN BLUE","REALLY GREAT BALANCE","RED GREAN BLUE","RED GREEN BLEW"], correct:0, image:("images/rgb.jpg")},
+  {question:"HTML AND CSS ARE COMPUTER LANGUAGES USED TO CREATE WHAT?",answers:["APPS","GAMES","MUSIC","WEBSITES"], correct:3, image:("images/website.jpg")},
+  {question:"THE FIRST PERSON SHOOTER VIDEO GAME \"DOOM\" WAS FIRST RELEASED IN WHAT YEAR?",answers:["1999","1989","1993","1997"], correct:2, image:("images/doom.jpg")},
+  {question:"WHAT DOES THE ACRONYM \"LOL\" STAND FOR WHEN USED ON THE INTERWEBS OR ON YOUR PHONE?",answers:["LOVE OR LUST","LAUGH OUT LOUD","LEAGUE OF LEGENDS","LABOR OF LOVE"], correct:1, image:("images/lol.jpg")}
 ];
 //Functions
 //==============================================================================
@@ -104,19 +104,19 @@ function timer(){
 
 function correctAnswer(){
   correctAnswers++;
-  $('timeRemaining').text("YOU ANSWERED CORRECTLY!").css().addClass('animate pulse infinite');
+  $('timeRemaining').text("YOU ANSWERED CORRECTLY!").css('color':'green').addClass('animate pulse infinite');
   resetRound();
 }
 
 function incorrectAnswer(){
   incorrectAnswers++;
-  $('timeRemaining').text("YOU ANSWERED INCORRECTLY!").css().addClass('animate pulse infinite');
+  $('timeRemaining').text("YOU ANSWERED INCORRECTLY!").css('color':'red').addClass('animate pulse infinite');
   resetRound();
 }
 
 function unAnswered(){
   unansweredQuestions++;
-  $('timeRemaining').text("YOU FAILED TO ANSWER THE QUESTION.").css().addClass('animate pulse infinite');
+  $('timeRemaining').text("YOU FAILED TO ANSWER THE QUESTION.").css('color':'yellow').addClass('animate pulse infinite');
   resetRound();
 }
 
