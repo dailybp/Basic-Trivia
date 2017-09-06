@@ -1,5 +1,24 @@
 //Psuedocode
+// Create an array of objects with: quesitons, answers, correct answers, and an image.
+//
+// Have counters that count: how many correct answers the player has made,
+// the number of incorrect anwsers the player has made, and number of unanswered questions
+// the player has made.
+//
+// Have a variable that denotes whether or not a question as been answered to allow
+// for the time to stop when a question HAS been answered.
+//
+// Create functions that update the counters when ever the player makes an action
+// that corresponds to an increase in the counter.
+//
+// Create a function that sets all the counters to zero and loads the quesitons and
+// answers.
 
+// Create a function that restarts the round.
+//
+// Create a timer function that begins to count down at a rate of a second and stops
+// when a question has been answered or when it reaches zero: notifies the player
+// of the correct answer and that they didn't answer the question.
 //Global Variables
 //==============================================================================
 var correctAnswers = 0;
@@ -11,20 +30,20 @@ var index = 0;
 var answered = false;
 var correct;
 var triviaGame = [
-  {question:"",answers:["","","",""], correct:, image:()},
-  {question:"",answers:["","","",""], correct:, image:()},
-  {question:"",answers:["","","",""], correct:, image:()},
-  {question:"",answers:["","","",""], correct:, image:()},
-  {question:"",answers:["","","",""], correct:, image:()},
-  {question:"",answers:["","","",""], correct:, image:()},
-  {question:"",answers:["","","",""], correct:, image:()},
-  {question:"",answers:["","","",""], correct:, image:()},
-  {question:"",answers:["","","",""], correct:, image:()},
-  {question:"",answers:["","","",""], correct:, image:()}
+  {question:"WHO WAS AWARDED THE FIRST U.S. PATENT FOR THE TELEPHONE?",answers:["ALEXANDER GRAHAM BELL","NICOLA TESLA","ELON MUSK","ALBERT EINSTIEN"], correct:0, image:()},
+  {question:"AN ANIMAL THAT LIVES PART OF ITS LIFE ON LAND AND PART ON WATER?",answers:["A DUCK","A MAMMAL","AN AMPHIBIAN","A CRUSTACEAN"], correct:2, image:()},
+  {question:"WHEN WAS THE NINTENDO 64 RELEASED?",answers:["1996","1998","1964","1994"], correct:0, image:()},
+  {question:"HOW OLD MUST A PERSON BE TO RUN FOR U.S. PRESIDENT?",answers:["31","35","37","40"], correct:1, image:()},
+  {question:"WHAT POPULAR SODA BEVERAGE WAS ORIGINALLY DEVELOPED AS A MIXER FOR WHISKY?",answers:["COKE","PEPSI","SURGE","MT DEW"], correct:3, image:()},
+  {question:"WHAT DOES CSS STAND FOR?",answers:["CRYPTIC STYLE STANDARDS","CASCADING STYLE STANDARDS","CASCADING STYLE SHEET","COMPUTER STUFFITY STUFF"], correct:2, image:()},
+  {question:"IN PHOTO EDITING PROGRAMS, WHAT DOES RGB STAND FOR?",answers:["RED GREEN BLUE","REALLY GREAT BALANCE","RED GREAN BLUE","RED GREEN BLEW"], correct:0, image:()},
+  {question:"HTML AND CSS ARE COMPUTER LANGUAGES USED TO CREATE WHAT?",answers:["APPS","GAMES","MUSIC","WEBSITES"], correct:3, image:()},
+  {question:"THE FIRST PERSON SHOOTER VIDEO GAME \"DOOM\" WAS FIRST RELEASED IN WHAT YEAR?",answers:["1999","1989","1993","1997"], correct:2, image:()},
+  {question:"WHAT DOES THE ACRONYM \"LOL\" STAND FOR WHEN USED ON THE INTERWEBS OR ON YOUR PHONE?",answers:["LOVE OR LUST","LAUGH OUT LOUD","LEAGUE OF LEGENDS","LABOR OF LOVE"], correct:1, image:()}
 ];
 //Functions
 //==============================================================================
-funciton startGame(){
+function startGame(){
   console.log("game start")
   $('#start-button').remove();//removes data and events from element
   correctAnswers = 0;
@@ -102,11 +121,11 @@ function unAnswered(){
 }
 
 function resetRound(){
-  $('')
-  $('')
+  $('#allAnswers').remove();
+  $('#answers').append("<img class=answerImage src=\"" + triviaGame[index].image + "\">");
   index++;
   if(index < triviaGame.length){
-
+    setTimeout(function(){loadQsandAs(); $('#answerImage').remove();}, 5000);
   }
   else{
     setTimeout(function(){
