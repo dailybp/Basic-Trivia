@@ -18,7 +18,7 @@
 //
 // Create a timer function that begins to count down at a rate of a second and stops
 // when a question has been answered or when it reaches zero: notifies the player
-// of the correct answer and that they didn't answer the question.
+// of the correct answer or that they didn't answer the question.
 //Global Variables
 //==============================================================================
 var correctAnswers = 0;
@@ -45,7 +45,7 @@ var triviaGame = [
 //==============================================================================
 function startGame(){
   console.log("game start")
-  $('#start-button').remove();//removes data and events from element
+  $('.start-button').remove();//removes data and events from element
   correctAnswers = 0;
   incorrectAnswers = 0;
   unansweredQuestions = 0;
@@ -65,32 +65,32 @@ function loadQsandAs(){
   }
   correct = triviaGame[index].correct;
   var question = triviaGame[index].question;
-  $('#question').html(question);
+  $('.question').html(question);
   for(var i = 0; i < 4; i++){
     var answer = triviaGame[index].answer[i];
-    $('#answer').append("<h4 class = allAnswers id=" + i + ">" + answer + "</h4>");
+    $('.answer').append("<h4 class = allAnswers id=" + i + ">" + answer + "</h4>");
   };
   $("h4").on('click', function(){
     var id = $(this).attr('id');
     alert(id)
     if(id === correct){
       answered  =true;//stops timer
-      $('#question').text("CORRECT!! THE CORRECT ANSWER WAS: " + triviaGame[index].answer[correct]);
+      $('.question').text("CORRECT!! THE CORRECT ANSWER WAS: " + triviaGame[index].answer[correct]);
       correctAnswer();
     }
     else{
       answered = true;//stops timer
-      $('#question').text("YOU CHOSE " + triviaGame[index].answer[index] + "WHICH IS INCORRECT. THE CORRECT ANSWER WAS: " + triviaGame[index].answer[correct]);
+      $('.question').text("YOU CHOSE " + triviaGame[index].answer[index] + "WHICH IS INCORRECT. THE CORRECT ANSWER WAS: " + triviaGame[index].answer[correct]);
       incorrectAnswer();
     }
   });
-}
+};
 
 function timer(){
   if(timeRemaining === 0){
     answered = true;
     clearInterval(intervalID);
-    $('#question').text("THE CORRECT ANSWER IS " + triviaGame[index].answer([correct]));
+    $('.question').text("THE CORRECT ANSWER IS " + triviaGame[index].answer([correct]));
     unAnswered();
   }
   else if(answered === true){
@@ -98,50 +98,50 @@ function timer(){
   }
   else{
     timeRemaining--;
-    $('#timeRemaining').text("YOU HAVE " + timeRemaining + "SECONDS TO CHOOSE!!").removeClass('animate pulse infinite');
+    $('.timeRemaining').text("YOU HAVE " + timeRemaining + "SECONDS TO CHOOSE!!").removeClass('animate pulse infinite');
   }
-}
+};
 
 function correctAnswer(){
   correctAnswers++;
-  $('timeRemaining').text("YOU ANSWERED CORRECTLY!").css('color':'green').addClass('animate pulse infinite');
+  $('.timeRemaining').text("YOU ANSWERED CORRECTLY!").css("color : green").addClass('animate pulse infinite');
   resetRound();
-}
+};
 
 function incorrectAnswer(){
   incorrectAnswers++;
-  $('timeRemaining').text("YOU ANSWERED INCORRECTLY!").css('color':'red').addClass('animate pulse infinite');
+  $('.timeRemaining').text("YOU ANSWERED INCORRECTLY!").css("color : red").addClass('animate pulse infinite');
   resetRound();
-}
+};
 
 function unAnswered(){
   unansweredQuestions++;
-  $('timeRemaining').text("YOU FAILED TO ANSWER THE QUESTION.").css('color':'yellow').addClass('animate pulse infinite');
+  $('.timeRemaining').text("YOU FAILED TO ANSWER THE QUESTION.").css("color : yellow").addClass('animate pulse infinite');
   resetRound();
-}
+};
 
 function resetRound(){
-  $('#allAnswers').remove();
-  $('#answers').append("<img class=answerImage src=\"" + triviaGame[index].image + "\">");
+  $('.allAnswers').remove();
+  $('.answers').append("<img class=answerImage src=\"" + triviaGame[index].image + "\">");
   index++;
   if(index < triviaGame.length){
     setTimeout(function(){loadQsandAs(); $('#answerImage').remove();}, 5000);
   }
   else{
     setTimeout(function(){
-      $('#question').remove();
-      $('#timeRemaining').remove();
-      $('#answerImage').remove();
-      $('#answers').append("<h4 class = allAnswers>CORRECT ANSWERS: " + correctAnswers + "</h4>");
-      $('#answers').append("<h4 class = allAnswers>INCORRECT ANSWERS: " + incorrectAnswers + "</h4>");
-      $('#answers').append("<h4 class = allAnswers>UNANSWERED ANSWERS: " + unansweredQuestions + "</h4>");
+      $('.question').remove();
+      $('.timeRemaining').remove();
+      $('.answerImage').remove();
+      $('.answers').append("<h4 class = allAnswers>CORRECT ANSWERS: " + correctAnswers + "</h4>");
+      $('.answers').append("<h4 class = allAnswers>INCORRECT ANSWERS: " + incorrectAnswers + "</h4>");
+      $('.answers').append("<h4 class = allAnswers>UNANSWERED ANSWERS: " + unansweredQuestions + "</h4>");
       setTimeout(function(){location.reload();}, 7000);
     }, 5000);
   }
-}
+};
 //Main Process
 //==============================================================================
-$('#start-button').on('click', function(){
-  $('#start-button').removeClass('infinite').addClass('animate fadeOutDown');
+$('.start-button').on('click', function(){
+  $('.start-button').removeClass('infinite').addClass('animate fadeOutDown');
   startGame();
 });
